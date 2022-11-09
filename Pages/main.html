@@ -1,0 +1,202 @@
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title> Better Driver </title>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <style>
+            .container
+            {
+                background-image: url('/media/cityBG2.png');
+                background-size: cover;
+            }    
+            .road
+            {
+                width: 400px;
+                height: 100vh;
+                background-color:black;
+                margin: auto;
+                position: relative;
+                border-left: 6px dashed purple;
+                border-right: 6px dashed purple;
+            }
+            .car{
+                width: 50px;
+                height: 100px;
+                transform: rotate(180deg);
+                background-color: black;
+                position: absolute;
+                bottom: 120px;
+                background-image:url(/media/car.png);
+                background-size: cover;
+                z-index: 2;
+            }
+            .line{
+                width: 10px;
+                height: 70px;
+                position: absolute;
+                background-color: white;
+                margin-left: 195px;
+                
+
+
+            }
+            .taxi{
+                width: 60px;
+                height: 125px;
+                background-color: black;
+                position: absolute;
+                bottom: 120px;
+                right: 90px;
+                background-image:url(/media/taxi.png);
+                background-size: cover;
+                z-index: 3;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <div class = "container">
+            <div class = "road"></div>
+        </div>
+        <script>
+
+            
+            const roadArea = document.querySelector('.road');
+            
+            // movement of the car left and right by 5 pixels
+            let pCar = {step : 5};
+            // set up left and rifht keys: default to false so it is not moving
+            let keys = {ArrowLeft: false, ArrowRight: false};
+            
+            //set up an even listener to move the car left and right 
+            document.addEventListener('keydown',function(event){
+                const key = event.key;
+                switch (key){
+                    case "ArrowLeft": keys[key] = true; break;
+                    case "ArrowRight": keys[key] = true; break;
+                }
+            });
+
+            document.addEventListener('keyup',function(event){
+                const key = event.key;
+                switch (key){
+                    case "ArrowLeft": keys[key] = false; break;
+                    case "ArrowRight": keys[key] = false; break;
+                }
+            });
+            ////
+
+            function moveLines(){
+                let divLines = document.querySelectorAll('.line');
+                divLines.forEach(function(block){
+                    if (block.y > 700){
+                        block.y = block.y -750;
+                    }
+                    block.y = block.y + pCar.step;
+                    block.style.top = block.y + 'px';
+                })
+            }
+
+            function movingTraffic(ref){
+                let taxy = document.querySelectorAll('.taxi');
+                pCarHit = ref.getBoundingClientRect();
+                
+                
+                taxy.forEach(function(block){
+                    blockHit = block.getBoundingClientRect();
+
+                    if (!((pCarHit.bottom<blockHit.top)||(pCarHit.top>blockHit.bottom)||(pCarHit.left>blockHit.right)||(pCarHit.right<blockHit.left))){
+                        console.log("you got hit");
+                        pCar.start = false;
+                        // <a href = "/Pages/conversation.html"></a>
+                        swal("Guess the AI Driven Cars are better huh!","Quit!","error");
+                    }
+                    console.log(block.y);
+                    if (block.y > 800){
+                        block.y = -300;
+                        block.style.left = Math.floor(Math.random() * 350) + 'px';
+                    }
+                    block.y = block.y + pCar.step;
+                    block.style.top = block.y + 'px'
+                })
+            }
+
+            function playarea(){
+
+                let playerCar= document.querySelector('.car');
+                let road = roadArea.getBoundingClientRect();
+                if (pCar.start){    
+                    
+                    movingTraffic(playerCar);
+                    moveLines();
+                    
+                    if (keys.ArrowLeft && pCar.x > 0){
+                        pCar.x = pCar.x - pCar.step;
+                    }
+
+                    if (keys.ArrowRight && pCar.x < (road.width-64)){
+                        pCar.x = pCar.x + pCar.step;
+                    }
+                    
+                    playerCar.style.top = pCar.y + 'px';
+                    playerCar.style.left = pCar.x + 'px'; 
+                    window.requestAnimationFrame(playarea);
+                }
+            }
+
+
+            function init(){
+
+
+                //move the player Car
+                pCar.start = true;
+                window.requestAnimationFrame(playarea);
+
+
+
+
+                let playerCar = document.createElement('div');
+                playerCar.setAttribute('class','car');
+                roadArea.appendChild(playerCar);
+
+                pCar.x = playerCar.offsetLeft;
+                pCar.y = playerCar.offsetTop;
+
+                //make flowing divider lines
+
+                //let divLines = document.createElement('div')
+                for (x =0; x < 6; x++){
+                let divLines = document.createElement('div')
+                divLines.setAttribute('class','line');
+                divLines.y = x * 150;
+                divLines.style.top = divLines.y + 'px';
+                roadArea.appendChild(divLines);
+                }
+
+                // for (x =0; x < 6; x++){
+                // let taxy = document.createElement('div')
+                // taxy.setAttribute('class','taxi');
+                // taxy.y = x * 150;
+                // taxy.style.top = taxy.y + 'px';
+                // roadArea.appendChild(taxy);
+                // }
+
+                // taxy on street
+
+                for (x = 0; x < 4 ; x++){
+                    let taxy = document.createElement('div');
+                    taxy.setAttribute('class','taxi');
+                    taxy.y = ((x+1)* 100) * -1;
+                    taxy.style.top = taxy.y +'px';
+                    taxy.style.left = Math.floor(Math.random()* 300) + 'px';
+                    roadArea.appendChild(taxy);
+
+                }
+            }
+
+            init();
+        </script>
+    </body>
+</html>

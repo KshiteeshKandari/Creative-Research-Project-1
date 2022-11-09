@@ -24,7 +24,7 @@ html{
 body{
     font-size: 1.7rem;
     font-family: var(--raleway);
-    background-image: url(/media/background.gif);
+    background-image: url(https://kshiteeshkandari.github.io/Creative-Research-Project-1/media/background.gif);
     color: var(color2);
 }
 ul{
@@ -102,7 +102,7 @@ img{
 
 }
 .obj{
-    color: white;
+    color: orangeredcd ;
     text-transform: capitalize;
     font-weight: 600;
     transition: var(--trans);
@@ -182,4 +182,21 @@ img{
   left: 0;
   top: 0;
   border-radius: 10px;
+}
+
+/* About page */
+
+.bodyP2{
+    position: relative;
+    background-color: black;
+    height: 100%;
+}
+
+p1{
+    position: absolute;
+    top: 8rem;
+    color: white;
+    font-family:;
+    font-weight:100;
+   
 }
