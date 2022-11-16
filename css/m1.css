@@ -75,9 +75,6 @@ img{
 .intro-name span{
     color: blueviolet;
 }
-.collapsed-introBar{
-    /* display: none; */
-}
 .introBar-show, .introBar-hide {
     font-size: 2.7rm;
     background-color: transparent;
@@ -196,7 +193,6 @@ p1{
     position: absolute;
     top: 8rem;
     color: white;
-    font-family:;
     font-weight:100;
    
 }
