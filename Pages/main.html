@@ -114,7 +114,7 @@
                         swal("Guess the AI Driven Cars are better huh!","Quit!","error");
                     }
                     console.log(block.y);
-                    if (block.y > 800){
+                    if (block.y > 580){
                         block.y = -300;
                         block.style.left = Math.floor(Math.random() * 350) + 'px';
                     }
@@ -188,7 +188,7 @@
                 for (x = 0; x < 4 ; x++){
                     let taxy = document.createElement('div');
                     taxy.setAttribute('class','taxi');
-                    taxy.y = ((x+1)* 100) * -1;
+                    taxy.y = ((x+1)* 150) * -1;
                     taxy.style.top = taxy.y +'px';
                     taxy.style.left = Math.floor(Math.random()* 300) + 'px';
                     roadArea.appendChild(taxy);
