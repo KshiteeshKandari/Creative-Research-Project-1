@@ -6,16 +6,16 @@ var crap;
 var fast;
 
 
-var bCounter = 0; 
+var bCounter = -1; 
 
 function preload(){
-  bgImg = loadImage('/media/convBG.jpg');
-  character1 = loadImage('/media/character1.png');
-  conV = loadImage('/media/convoBuble.png');
-  us = loadImage('/media/us.png');
-  Yes = loadSound("/media/Sounds/yes.mp3");
-  crap = loadSound("./media/Sounds/crap.mp3");
-  fast = loadSound("/media/Sounds/.mp3");
+  bgImg = loadImage('https://KshiteeshKandari.github.io/Creative-Research-Project-1/media/convBg.jpg');
+  character1 = loadImage('https://KshiteeshKandari.github.io/Creative-Research-Project-1/media/character1.png');
+  conV = loadImage('https://KshiteeshKandari.github.io/Creative-Research-Project-1/media/convoBuble.png');
+  us = loadImage('https://KshiteeshKandari.github.io/Creative-Research-Project-1/media/us.png');
+  Yes = loadSound("https://KshiteeshKandari.github.io/Creative-Research-Project-1/media/Sounds/yes.mp3");
+  crap = loadSound("https://KshiteeshKandari.github.io/Creative-Research-Project-1/media/Sounds/Oh! Crap!.mp3");
+  fast = loadSound("https://KshiteeshKandari.github.io/Creative-Research-Project-1/media/Sounds/fast.mp3");
 }
 
 function setup() {
