@@ -57,11 +57,15 @@
         
     </head>
     <body>
+        <audio src = "https://KshiteeshKandari.github.io/Creative-Research-Project-1/media/Sounds/car.mp3" id = "gameMusic" loop = "loop"></audio>
         <div class = "container">
             <div class = "road"></div>
         </div>
         <script>
-
+               
+             setTimeout(function(){
+                document.getElementById("gameMusic").play();
+            },600)
             
             const roadArea = document.querySelector('.road');
             
@@ -112,6 +116,7 @@
                         pCar.start = false;
                         // <a href = "/Pages/conversation.html"></a>
                         swal("Guess the AI Driven Cars are better huh!","Quit!","error");
+                        document.getElementById("gameMusic").pause();
                     }
                     console.log(block.y);
                     if (block.y > 580){
