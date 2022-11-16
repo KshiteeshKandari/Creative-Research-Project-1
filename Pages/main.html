@@ -1,11 +1,14 @@
+<!-- MiniGame webPage -->
 <html>
     <head>
         <meta charset = "UTF-8">
         <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title> Better Driver </title>
+        <!-- Pop Up the pop was imported from the sweetalert webpage -->
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <style>
+            /* Styling the different elements to set up for the game */
             .container
             {
                 background-image: url('https://KshiteeshKandari.github.io/Creative-Research-Project-1/media/cityBG2.png');
@@ -57,24 +60,28 @@
         
     </head>
     <body>
+        <!-- Importing the sound that plays in the background -->
         <audio src = "../media/Sounds/car.mp3" id = "gameMusic" loop = "loop"></audio>
+        <!-- a div class for the road and all the elements to be contained -->
         <div class = "container">
             <div class = "road"></div>
         </div>
         <script>
-
+            // Setting up a timeout function to start the music at 60 miliseconds
             setTimeout(function(){
                 document.getElementById("gameMusic").play();
-            },800)
+            },600)
             
+            // getting the road element
             const roadArea = document.querySelector('.road');
             
             // movement of the car left and right by 5 pixels
             let pCar = {step : 5};
-            // set up left and rifht keys: default to false so it is not moving
+            // set up left and right keys: default to false so it is not moving
             let keys = {ArrowLeft: false, ArrowRight: false};
             
             //set up an even listener to move the car left and right 
+            // help was taken from Geeks for Geeks
             document.addEventListener('keydown',function(event){
                 const key = event.key;
                 switch (key){
@@ -82,7 +89,7 @@
                     case "ArrowRight": keys[key] = true; break;
                 }
             });
-
+            // checking if the key is not pressed to know that the car is not moving
             document.addEventListener('keyup',function(event){
                 const key = event.key;
                 switch (key){
@@ -91,7 +98,7 @@
                 }
             });
             ////
-
+            //A for loop that moves every single line downwards
             function moveLines(){
                 let divLines = document.querySelectorAll('.line');
                 divLines.forEach(function(block){
@@ -102,10 +109,10 @@
                     block.style.top = block.y + 'px';
                 })
             }
-
+            //a function for oncoming traffic(we also check for collision in this function)
             function movingTraffic(ref){
                 let taxy = document.querySelectorAll('.taxi');
-                pCarHit = ref.getBoundingClientRect();
+                pCarHit = ref.getBoundingClientRect(); //this is a inbuilt script function which gets an elements parameters in a rectangle fields
                 
                 
                 taxy.forEach(function(block){
@@ -114,7 +121,6 @@
                     if (!((pCarHit.bottom<blockHit.top)||(pCarHit.top>blockHit.bottom)||(pCarHit.left>blockHit.right)||(pCarHit.right<blockHit.left))){
                         console.log("you got hit");
                         pCar.start = false;
-                        // <a href = "/Pages/conversation.html"></a>
                         swal("Guess the AI Driven Cars are better huh!","Quit!","error");
                         document.getElementById("gameMusic").pause();
                     }
@@ -128,6 +134,7 @@
                 })
             }
 
+            //this is the play area, so where we call the function to make the cars and div lines move
             function playarea(){
 
                 let playerCar= document.querySelector('.car');
@@ -137,6 +144,7 @@
                     movingTraffic(playerCar);
                     moveLines();
                     
+                    //cmove the car the amount of pixels set to move
                     if (keys.ArrowLeft && pCar.x > 0){
                         pCar.x = pCar.x - pCar.step;
                     }
@@ -169,9 +177,7 @@
                 pCar.x = playerCar.offsetLeft;
                 pCar.y = playerCar.offsetTop;
 
-                //make flowing divider lines
-
-                //let divLines = document.createElement('div')
+                //make flowing divider lines using for loop to get 6 lines
                 for (x =0; x < 6; x++){
                 let divLines = document.createElement('div')
                 divLines.setAttribute('class','line');
@@ -180,15 +186,8 @@
                 roadArea.appendChild(divLines);
                 }
 
-                // for (x =0; x < 6; x++){
-                // let taxy = document.createElement('div')
-                // taxy.setAttribute('class','taxi');
-                // taxy.y = x * 150;
-                // taxy.style.top = taxy.y + 'px';
-                // roadArea.appendChild(taxy);
-                // }
 
-                // taxy on street
+                // taxy on street, making a for loop to randomly spawn 4 cars in the y axis
 
                 for (x = 0; x < 4 ; x++){
                     let taxy = document.createElement('div');
