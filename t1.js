@@ -6,7 +6,7 @@ var crap;
 var fast;
 
 
-var bCounter = 0; 
+var bCounter = -1; 
 
 function preload(){
   bgImg = loadImage('https://KshiteeshKandari.github.io/Creative-Research-Project-1/media/convBg.jpg');
