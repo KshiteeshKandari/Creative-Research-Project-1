@@ -14,7 +14,7 @@ function preload(){
   conV = loadImage('https://KshiteeshKandari.github.io/Creative-Research-Project-1/media/convoBuble.png');
   us = loadImage('https://KshiteeshKandari.github.io/Creative-Research-Project-1/media/us.png');
   Yes = loadSound("https://KshiteeshKandari.github.io/Creative-Research-Project-1/media/Sounds/yes.mp3");
-  crap = loadSound("https://KshiteeshKandari.github.io/Creative-Research-Project-1/media/Sounds/crap.mp3");
+  crap = loadSound("https://KshiteeshKandari.github.io/Creative-Research-Project-1/media/Sounds/Oh! Crap!.mp3");
   fast = loadSound("https://KshiteeshKandari.github.io/Creative-Research-Project-1/media/Sounds/fast.mp3");
 }
 
