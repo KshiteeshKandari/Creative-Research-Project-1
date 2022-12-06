@@ -24,6 +24,23 @@
                 border-left: 6px dashed purple;
                 border-right: 6px dashed purple;
             }
+            .timer{
+                color:mintcream;
+                font-size: 40px;
+                align-items: center;
+                justify-content:center;
+                font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+                font-weight: 100;
+                width: 100px;
+                height: 0px;
+                background-color: white;
+                position: absolute;
+                bottom: 120px;
+                right: 90px;
+                
+                background-size: cover;
+                z-index: 3;
+            }
             .car{
                 width: 50px;
                 height: 100px;
@@ -65,8 +82,35 @@
         <!-- a div class for the road and all the elements to be contained -->
         <div class = "container">
             <div class = "road"></div>
+            <div class = "timer">
+                <P id = "countdown">0:30</P>
+            </div>
         </div>
         <script>
+            
+            //---timer---//
+            var startingMinutes = 0.50;
+            let time = startingMinutes * 60;
+
+            const countdownEL = document.getElementById('countdown');
+
+            setInterval(Count_Down,1000);
+            function Count_Down(){
+                const minutes = Math.floor(time/60);
+                let sec = time % 60;
+
+                countdownEL.innerHTML = `${minutes}: ${sec}`;
+                if(sec == 0){
+                    window.open('https://editor.p5js.org/KshiteeshKandari/full/kZ-nUzN6h');
+                    pCar.start = false;
+                    time = 10000;
+                }
+
+                time--;
+            }
+
+            
+            //---timer--//
             // Setting up a timeout function to start the music at 60 miliseconds
             setTimeout(function(){
                 document.getElementById("gameMusic").play();
@@ -123,6 +167,7 @@
                         pCar.start = false;
                         swal("Guess the AI Driven Cars are better huh!","Quit!","error");
                         document.getElementById("gameMusic").pause();
+                        time = 10000;
                         window.open('https://editor.p5js.org/KshiteeshKandari/full/X-s9XTPs3');
                     }
                     console.log(block.y);
