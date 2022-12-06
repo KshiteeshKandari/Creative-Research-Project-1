@@ -18,8 +18,13 @@ function preload(){
   Yes = loadSound("https://KshiteeshKandari.github.io/Creative-Research-Project-1/media/Sounds/yes.mp3");
   crap = loadSound("https://KshiteeshKandari.github.io/Creative-Research-Project-1/media/Sounds/Oh! Crap!.mp3");
   fast = loadSound("https://KshiteeshKandari.github.io/Creative-Research-Project-1/media/Sounds/fast.mp3");
+  song = loadSound("https://KshiteeshKandari.github.io/Creative-Research-Project-1/media/Sounds/intro.mp3");
 }
-
+//play music function
+function playMusic(){
+  song.play();
+  playButton.remove();
+}
 function setup() {
   createCanvas(700, 450);
   background(bgImg);
@@ -32,6 +37,18 @@ function setup() {
   button.size(60,30);
   button.position(420,425);
   button.mousePressed(buttonCounter);   
+  //music button
+   slider = createSlider(0,1,0.3,0.01);
+   slider.position(610,70);
+   slider.style('width','80px');
+ 
+   playButton = createButton("Play Song");
+      playButton.position(610,40);
+      playButton.style('background-color','purple');
+      playButton.size(80,30);
+
+   playButton.mousePressed(playMusic);
+  //music-----
 }
 
 //call button counter to increase the button while also playing sounds for specific buttons
@@ -58,6 +75,7 @@ function buttonCounter(){
   if (bCounter == 13){
     noLoop();
     button.remove();
+    song.pause();
   }
   
   
@@ -79,6 +97,7 @@ function conversation(){
 
 function draw() {
   background(bgImg);
+  song.setVolume(slider.value());
   image(conV,190,150,380,300);
  
   conversation();
