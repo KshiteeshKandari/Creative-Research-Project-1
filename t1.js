@@ -7,7 +7,7 @@ var crap;
 var fast;
 
 //setting up a button counter to keep track of button clicks and switch scenes
-var bCounter = -1; 
+var bCounter = 0; 
 
 //setting up preload to load images and sound
 function preload(){
@@ -28,7 +28,10 @@ function setup() {
   image(conV,190,150,380,300);
   
   button = createButton("Next");
-  button.mousePressed(buttonCounter);  
+  button.style("background-color","orange");
+  button.size(60,30);
+  button.position(420,425);
+  button.mousePressed(buttonCounter);   
 }
 
 //call button counter to increase the button while also playing sounds for specific buttons
@@ -54,6 +57,7 @@ function buttonCounter(){
 
   if (bCounter == 13){
     noLoop();
+    button.remove();
   }
   
   
