@@ -20,4 +20,7 @@ https://cyberleninka.ru/article/n/the-automation-of-jobs-a-threat-for-employment
   
   Nedelkoska, L., & Quintini, G. (2018, March 08). Automation, skills use and training. Retrieved November 16, 2022, from https://www.oecd-ilibrary.org/content/paper/2e2f4eea-en
   
+  
+  For Music I went to a retro music website which had alot of the old retro game music.
+  https://retro.sx/search
           
